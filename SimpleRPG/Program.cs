@@ -31,25 +31,7 @@ public class Character
             Environment.Exit(0);
         }
     }
-}
-
-class Hero : Character
-{
-    public Hero(int level, string name) : base(level, name)
-    {
-    }
-}
-
-class Villain : Character
-{
-    public Villain(int level, string name) : base(level, name)
-    {
-    }
-}
-
-public class Encounter
-{
-    private static Character Chargen()
+    public static Character Chargen()
     {
         string name = Console.ReadLine();
         while (String.IsNullOrEmpty(name))
@@ -68,13 +50,31 @@ public class Encounter
         return new Character(level, name);
     }
 
+}
+
+class Hero : Character //These subclasses are not implemented at this time.
+{
+    public Hero(int level, string name) : base(level, name)
+    {
+    }
+}
+
+class Villain : Character //These subclasses are not implemented at this time.
+{
+    public Villain(int level, string name) : base(level, name)
+    {
+    }
+}
+
+public class Encounter
+{
     static void Main()
     {
         Console.WriteLine("Benvenuto in Simple RPG, digitare il nome dell'Eroe:");
-        Character player = Chargen();
+        Character player = Character.Chargen();
         Console.WriteLine($"Salve {player.name}, livello {player.level}");
         Console.WriteLine("Digitare il nome del Nemico");
-        Character enemy = Chargen();
+        Character enemy = Character.Chargen();
         Console.WriteLine($"L'Eroe {player.name} si prepara a scontrarsi contro {enemy.name}!");
         while (player.currenthp > 0 && enemy.currenthp > 0)
         {
